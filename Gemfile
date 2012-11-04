@@ -34,7 +34,7 @@ gem 'rabl'
 gem 'jquery-rails'
 gem 'yajl-ruby'
 gem 'rails-backbone'
-gem 'mongoid'
+gem 'mongoid', ">= 3.0.3"
 gem 'bson_ext'
 gem 'ruby-haml-js'
 gem 'devise'

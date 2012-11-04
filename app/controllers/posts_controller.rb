@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
   def index
-    @posts = Post.order_by([:created_at, :desc]).page(params[:page])
+    @posts = Post.order_by([:created_at, :desc])
+    render json: @posts
   end
 
   def show
@@ -19,7 +20,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
-
     if @post.save
       render action: "show", status: :created, location: @post
     else
@@ -29,8 +29,9 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(params[:post])
-      render action: "show"
+    if @post.update_attributes(:comments_attributes => params[:comments_attributes])
+      @post.save()
+      render json: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end

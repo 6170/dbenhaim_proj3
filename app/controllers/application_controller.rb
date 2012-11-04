@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   respond_to :json
   protect_from_forgery
-  layout 'fixed'
   before_filter :set_token
   before_filter :set_locale
   def set_token

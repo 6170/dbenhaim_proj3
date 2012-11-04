@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Rails Reddit" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Reddit app in rails" %>">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body style="padding-top:60px; padding-bottom:40px;">
+    <div id="container" class="container">
+      <header>
+        <%= render 'layouts/navigation' %>
+      </header>
+      <div id="main" role="main">
+        <%= yield %>
+      </div>
+      <footer>
+      </footer>
+    </div> <!--! end of #container -->
+  <script type="text/template" id="seller-inventory-template">
+    <h1>Items for sale</h1>
+    <ul class="inventory"></ul>
+  </script>
+
+  <script type="text/template" id="orders-order-template">
+
+    <h1 class="pull-left">Order Details</h1>
+    <h1 class="pull-right hide state">{{ state }}</h1>
+    <button id="{{ id }}" class="hide makeCurrentOrder pull-right btn btn-large btn-primary">Make Active Order</button>
+    <button id="{{ id }}" class="hide placeOrder pull-right btn btn-large btn-success">placeOrder</button>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>State</th>
+          <th>Date Listed</th>
+          <th>Image</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="{{ _id }}">
+      </tbody>
+    </table>
+    <h1>Total: {{ total }}</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </script>
+
+  <script type="text/template" id="order-item-template">
+    <td>{{ title }}</td>
+    <td>{{ price }}</td>
+    <td>{{ state }}</td>
+    <td>{{ created_at }}</td>
+    <td><button id="{{ id }}" class="deletePost">Delete from order!</button></td>
+  </script>
+
+
+  <script type="text/template" id="post-template">
+    <div class="accordion" id="accordion-post-{{ _id }}">
+      <div class="accordion-group">
+        <a class="btn btn-danger pull-right remove-post" data-item-id="{{ _id }}"><icon class="icon-remove-circle"></icon></a>
+        <div class="accordion-heading">
+          <h1>
+            <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-post-{{ _id }}" href="#collapse{{ _id }}">{{ title }}</a>
+          </h1>
+        </div>
+        <div class="accordion-body collapse" id="collapse{{ _id }}">
+          <div class="accordion-inner">
+            <p>{{ content }}</p>
+            <div class="comments">
+            </div>
+          </div>
+          <form class="form-horizontal" id="new-comment-form-{{ _id }}">
+            <div class="control-group">
+              <label class="control-label" for="comment-content">Add Comment</label>
+              <div class="controls">
+                <input type="text" name="content" id="comment-content-{{ _id }}" placeholder="add comment...">
+                <a class="btn btn-primary addComment" id="add-comment-{{ _id }}">Add!</a>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-success pull-right comment-button add-comment newCommentModal" data-item-id="{{ _id }}" data-toggle="modal">Reply</button>
+          <button class="btn btn-primary pull-right comment-button like-comment" data-item-id="{{ _id }}">Like {{votes}}</button>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="comment-template">
+    <div class="accordion" id="accordion-comment-{{ _id }}">
+      <div class="accordion-group">
+        <a class="btn btn-danger pull-right remove-comment" data-item-id="{{ _id }}"><icon class="icon-remove-circle"></icon></a>
+        <div class="accordion-heading">
+          <h1>
+            <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-comment-{{ _id }}" href="#collapse{{ _id }}">{{ content }}</a>
+          </h1>
+        </div>
+        <div class="accordion-body collapse" id="collapse{{ _id }}">
+          <div class="accordion-inner">
+            <div class="comments">
+            </div>
+          </div>
+          <form class="form-horizontal" id="new-comment-form-{{ _id }}">
+            <div class="control-group">
+              <label class="control-label" for="comment-content">Add Comment</label>
+              <div class="controls">
+                <input type="text" name="content" id="comment-content-{{ _id }}" placeholder="add comment...">
+                <a class="btn btn-primary addComment" id="add-comment-{{ _id }}">Add!</a>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-success pull-right comment-button add-comment newCommentModal" data-item-id="{{ _id }}" data-toggle="modal">Reply</button>
+          <button class="btn btn-primary pull-right comment-button like-comment" data-item-id="{{ _id }}">Like {{votes}}</button>
+        </div>
+      </div>
+    </div>
+  </script>
+  </body>
+</html>
