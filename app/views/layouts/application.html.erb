@@ -6,6 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Reddit app in rails" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <script src="http://js.pusher.com/1.12/pusher.min.js"></script>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
@@ -24,7 +25,13 @@
     <h1>Items for sale</h1>
     <ul class="inventory"></ul>
   </script>
-
+  <script type="text/javascript">
+  pusher = new Pusher('4e6b153046f1ff3209b3'); // uses your API KEY
+   var channel = pusher.subscribe('posts');
+   channel.bind('update', function(data) {
+    window.bizarre.posts.fetch();
+   });
+ </script>
   <script type="text/template" id="orders-order-template">
 
     <h1 class="pull-left">Order Details</h1>

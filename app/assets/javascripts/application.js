@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
+//= require backpusher
 //= require backbone_datalink
 //= require backbone/rails_shopping
 //= require mustache

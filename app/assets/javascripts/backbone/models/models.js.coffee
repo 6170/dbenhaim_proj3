@@ -46,4 +46,3 @@ class window.App.Collections.Posts extends Backbone.Collection
 class window.App.Models.User extends Backbone.Model
   urlRoot: '/users'
   idAttribute: '_id'
-  

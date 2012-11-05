@@ -10,7 +10,7 @@ window.App =
   Views: {}
   Routers: {}
   init: ->
-    new window.App.Routers.Bizarre()
+    window.bizarre = new window.App.Routers.Bizarre()
     Backbone.history.start()
 
 $(document).ready ->

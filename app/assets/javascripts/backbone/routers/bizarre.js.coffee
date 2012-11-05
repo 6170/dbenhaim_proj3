@@ -10,7 +10,7 @@ class window.App.Routers.Bizarre extends Backbone.Router
     @posts.fetch()
     @postsView = new window.App.Views.Posts
       collection: @posts
-    console.log @posts
+
     @postsView.render()
 
   home: ->

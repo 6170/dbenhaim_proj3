@@ -32,6 +32,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       render json: @comment
+      Pusher['posts'].trigger('update', Post.includes(:comments).order_by([:created_at, :desc]), request.headers["X-Pusher-Socket-ID"])
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -42,6 +43,7 @@ class CommentsController < ApplicationController
     if @comment.update_attributes(:votes => params[:votes], :vote_ids => params[:voter_ids])
       @comment.save()
       render json: @comment
+      Pusher['posts'].trigger('update', Post.includes(:comments).order_by([:created_at, :desc]), request.headers["X-Pusher-Socket-ID"])
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -50,6 +52,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+    Pusher['posts'].trigger('update', Post.includes(:comments).order_by([:created_at, :desc]), request.headers["X-Pusher-Socket-ID"])
     head :no_content
   end
 end

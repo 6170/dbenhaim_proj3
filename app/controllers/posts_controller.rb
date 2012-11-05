@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     @post.update_attributes(user_id: current_user.id, email: current_user.email)
     if @post.save
       render json: @post
+      Pusher['posts'].trigger('update', Post.includes(:comments).order_by([:created_at, :desc]), request.headers["X-Pusher-Socket-ID"])
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -32,6 +33,7 @@ class PostsController < ApplicationController
     if @post.update_attributes(:comments_attributes => params[:comments_attributes])
       @post.save()
       render json: @post
+      Pusher['posts'].trigger('update', Post.includes(:comments).order_by([:created_at, :desc]), request.headers["X-Pusher-Socket-ID"])
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -40,6 +42,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    Pusher['posts'].trigger('update', Post.includes(:comments).order_by([:created_at, :desc]), request.headers["X-Pusher-Socket-ID"])
     head :no_content
   end
 end

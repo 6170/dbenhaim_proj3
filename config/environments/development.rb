@@ -1,4 +1,5 @@
 BackboneTwitterBootstrap::Application.configure do
+  require 'pusher'
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -36,4 +37,7 @@ BackboneTwitterBootstrap::Application.configure do
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :file
+  Pusher.app_id = '31044'
+  Pusher.key    = '4e6b153046f1ff3209b3'
+  Pusher.secret = '1aab3da7f345e265f286'
 end
