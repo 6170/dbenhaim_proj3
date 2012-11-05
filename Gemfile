@@ -41,7 +41,6 @@ gem 'devise'
 gem 'cancan'
 gem 'pusher'
 gem 'redcarpet'
-gem 'requirejs-rails', :git => 'git://github.com/vintikzzz/requirejs-rails.git'
 gem 'devise-i18n'
 
 # To use ActiveModel has_secure_password
