@@ -9,10 +9,6 @@ class Ability
       can :read, Post
       can :read, Comment
       can :create, :session
-    elsif !user.confirmed?
-      can :read, Post
-      can :read, Comment
-      can :destroy, :session
     elsif user.roles.include?(:admin)
       can :manage, Post
       can :manage, Comment
