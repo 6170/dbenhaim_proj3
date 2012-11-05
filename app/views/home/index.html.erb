@@ -1,49 +1,19 @@
 <div class="container">
   <div id="posts" class="">
     <div class="row">
-      <div class="span9">
-        <h1>Your Current Shop Inventory</h1>
+      <div class="span6">
+        <h1>Mongo-Reddit</h1>
       </div>
-      <div class="span3">
-        <a href="#newPostModal" role="button" class="btn" data-toggle="modal">Start a new post</a>
+      <div class="span6">
+        <form class="form-inline pull-right" id="new-post-form">
+          <label>Add a New Post: </label>
+          <input type="text" name="title" class="input-small" placeholder="Title">
+          <input type="text" name="content" class="input-small" placeholder="Content">
+          <a class="btn btn-primary addComment" id="save-new-post">Add!</a>
+        </form>
       </div>
     </div>
     <div class="row posts">
-    </div>
-    <div class="modal hide fade" id="newPostModal">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Add New Post</h3>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" id="new-post-form">
-          <fieldset>
-            <div id="legend" class="">
-              <legend class="">Add a New Post</legend>
-            </div>
-            <div class="control-group">
-              <!-- Text input-->
-              <label class="control-label" for="input01">Title</label>
-              <div class="controls">
-                <input type="text" placeholder="Post Title" name="title" class="input-xlarge">
-                <p class="help-block">What is your Post called?</p>
-              </div>
-            </div>
-            <div class="control-group">
-              <!-- Text input-->
-              <label class="control-label" for="input01">Content</label>
-              <div class="controls">
-                <input type="text" placeholder="What what what!" name="content" class="input-xlarge">
-                <p class="help-block">What do you have to say?</p>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary" id="save-new-post">Save Post</button>
-      </div>
     </div>
   </div>
 </div>

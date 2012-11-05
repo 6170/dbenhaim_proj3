@@ -66,10 +66,10 @@
   <script type="text/template" id="post-template">
     <div class="accordion" id="accordion-post-{{ _id }}">
       <div class="accordion-group">
-        <a class="btn btn-danger pull-right remove-post" data-item-id="{{ _id }}"><icon class="icon-remove-circle"></icon></a>
+        <a class="btn btn-danger pull-right remove-post hide" data-item-id="{{ _id }}"><icon class="icon-remove-circle"></icon></a>
         <div class="accordion-heading">
           <h1>
-            <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-post-{{ _id }}" href="#collapse{{ _id }}">{{ title }}</a>
+            <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-post-{{ _id }}" href="#collapse{{ _id }}">{{ title }} by {{ email }}</a>
           </h1>
         </div>
         <div class="accordion-body collapse" id="collapse{{ _id }}">
@@ -78,7 +78,7 @@
             <div class="comments">
             </div>
           </div>
-          <form class="form-horizontal" id="new-comment-form-{{ _id }}">
+          <form class="form-horizontal hide" id="new-comment-form-{{ _id }}">
             <div class="control-group">
               <label class="control-label" for="comment-content">Add Comment</label>
               <div class="controls">
@@ -87,8 +87,11 @@
               </div>
             </div>
           </form>
-          <button class="btn btn-success pull-right comment-button add-comment newCommentModal" data-item-id="{{ _id }}" data-toggle="modal">Reply</button>
-          <button class="btn btn-primary pull-right comment-button like-comment" data-item-id="{{ _id }}">Like {{votes}}</button>
+          <div class="comment-buttons hide">
+            <h3 class="pull-right" style="margin-right: 5px;">Votes: {{ votes }}</h3>
+            <button class="btn btn-primary pull-right comment-button upvote" data-item-id="{{ _id }}">Upvote</button>
+            <button class="btn btn-danger pull-right comment-button downvote hide" data-item-id="{{ _id }}">Downvote</button>
+          </div>
         </div>
       </div>
     </div>
@@ -97,9 +100,12 @@
   <script type="text/template" id="comment-template">
     <div class="accordion" id="accordion-comment-{{ _id }}">
       <div class="accordion-group">
-        <a class="btn btn-danger pull-right remove-comment" data-item-id="{{ _id }}"><icon class="icon-remove-circle"></icon></a>
+        <a class="btn btn-danger pull-right remove-comment hide" data-item-id="{{ _id }}"><icon class="icon-remove-circle"></icon></a>
         <div class="accordion-heading">
           <h1>
+            <h3 class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-comment-{{ _id }}" href="#collapse{{ _id }}">
+              {{ email }}:
+            </h3>
             <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-comment-{{ _id }}" href="#collapse{{ _id }}">{{ content }}</a>
           </h1>
         </div>
@@ -108,7 +114,7 @@
             <div class="comments">
             </div>
           </div>
-          <form class="form-horizontal" id="new-comment-form-{{ _id }}">
+          <form class="form-horizontal hide" id="new-comment-form-{{ _id }}">
             <div class="control-group">
               <label class="control-label" for="comment-content">Add Comment</label>
               <div class="controls">
@@ -117,8 +123,11 @@
               </div>
             </div>
           </form>
-          <button class="btn btn-success pull-right comment-button add-comment newCommentModal" data-item-id="{{ _id }}" data-toggle="modal">Reply</button>
-          <button class="btn btn-primary pull-right comment-button like-comment" data-item-id="{{ _id }}">Like {{votes}}</button>
+          <div class="comment-buttons hide">
+            <h3 class="pull-right" style="margin-right: 5px;">Votes: {{ votes }}</h3>
+            <button class="btn btn-primary pull-right comment-button upvote" data-item-id="{{ _id }}">Upvote</button>
+            <button class="btn btn-danger pull-right comment-button downvote hide" data-item-id="{{ _id }}">Downvote</button>
+          </div>
         </div>
       </div>
     </div>

@@ -4,6 +4,8 @@ class window.App.Routers.Bizarre extends Backbone.Router
 
   initialize: ->
     #shopview needs shop and items
+    window.User = new window.App.Models.User()
+    window.User.fetch()
     @posts = new window.App.Collections.Posts()
     @posts.fetch()
     @postsView = new window.App.Views.Posts

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
   def index
-    @posts = Post.order_by([:created_at, :desc])
+    @posts = Post.includes(:comments).order_by([:created_at, :desc])
     render json: @posts
   end
 
@@ -19,9 +19,9 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    @post.user = current_user
+    @post.update_attributes(user_id: current_user.id, email: current_user.email)
     if @post.save
-      render action: "show", status: :created, location: @post
+      render json: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -43,3 +43,9 @@ class PostsController < ApplicationController
     head :no_content
   end
 end
+
+# respond_to do |format|
+#       format.json do
+#         render :json => @posts.to_json(:include => { :comments => {  :include => {:comments => {} }  } })
+#       end
+#     end

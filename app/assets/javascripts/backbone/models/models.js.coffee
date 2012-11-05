@@ -18,6 +18,7 @@ Backbone.Model::nestCollection = (attributeName, nestedCollection) ->
 
 class window.App.Models.Comment extends Backbone.Model
   idAttribute: "_id"
+  urlRoot: "/comments"
   initialize: (resp) ->
     @comments = @nestCollection('comments', new App.Collections.Comments(resp.comments))
     @bind 'change', =>
@@ -41,4 +42,8 @@ class window.App.Models.Post extends Backbone.Model
 class window.App.Collections.Posts extends Backbone.Collection
   url: '/posts'
   model: window.App.Models.Post
+
+class window.App.Models.User extends Backbone.Model
+  urlRoot: '/users'
+  idAttribute: '_id'
   

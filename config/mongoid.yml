@@ -5,6 +5,7 @@ production:
       options:
         skip_version_check: true
         safe: true
+        identity_map_enabled: true
 development:
   # Configure available database sessions. (required)
   sessions:
@@ -33,7 +34,7 @@ development:
     # allow_dynamic_fields: true
 
     # Enable the identity map, needed for eager loading. (default: false)
-    # identity_map_enabled: false
+    identity_map_enabled: true
 
     # Includes the root model name in json serialization. (default: false)
     # include_root_in_json: false
